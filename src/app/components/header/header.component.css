@@ -1,3 +1,28 @@
-.header{
-    background-color:turquoise;
+.header {    
+    overflow: hidden;
+    background-color: #f1f1f1;
+    padding: 20px 10px;
+    padding: 2em;
 }
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+/* Style the header links */
+.header a {
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+  }
+  
+  /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+  .header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+  }
+

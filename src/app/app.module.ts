@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -10,6 +13,10 @@ import { BirdInfoComponent } from './components/bird-info/bird-info.component';
 import { LoginComponent } from './components/login/login.component';
 import { CreateComponent } from './components/create/create.component';
 import { HomeComponent } from './components/home/home.component';
+import { ErrorComponent } from './components/error/error.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AboutComponent } from './components/about/about.component';
+
 
 @NgModule({
   declarations: [
@@ -20,11 +27,16 @@ import { HomeComponent } from './components/home/home.component';
     BirdInfoComponent,
     LoginComponent,
     CreateComponent,
-    HomeComponent
+    HomeComponent,
+    ErrorComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatToolbarModule,
+    MatIconModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
