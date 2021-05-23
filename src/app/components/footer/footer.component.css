@@ -3,7 +3,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: rgb(117, 94, 15);
+    background-image: radial-gradient( circle 759px at 14% 22.3%,  rgba(10,64,88,1) 0%, rgba(15,164,102,1) 90% );
     color: black;
     text-align: center;
     background-color: #dbdbdb;

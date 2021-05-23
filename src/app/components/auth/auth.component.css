@@ -1,0 +1,12 @@
+form{
+    padding: 2em;
+}
+
+.login-content{
+    display: flex;
+    justify-content: center;
+}
+
+img{
+    width: 240px;
+}

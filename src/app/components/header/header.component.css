@@ -1,6 +1,6 @@
 .header {    
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-image: radial-gradient( circle 860px at 14.7% 28.8%,  rgba(255,121,42,1) 0%, rgba(250,234,105,1) 83.2% );
     padding: 20px 10px;
     padding: 2em;
 }

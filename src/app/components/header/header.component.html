@@ -1,10 +1,21 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row class="header">
-        <a href="#home" class="logo">Aves de Fuerteventura</a>
+        <!-- Page logo -->
+        <span routerLinkActive="active"><a routerLink="home" class="logo">Aves de Fuerteventura</a></span>
         <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu" aria-label="icon-button with menu icon">
             <mat-icon>menu</mat-icon>
         </button>
+        
+        <!-- Menú desplegable -->
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <span routerLinkActive="active"><a routerLink="auth">Autenticarse</a></span>
+            </button>
+            <button mat-menu-item disabled>
+              <span routerLinkActive="active"><a routerLink="auth">Añadir</a></span>
+            </button>
+          </mat-menu>
     </mat-toolbar-row>
 </mat-toolbar>
 
