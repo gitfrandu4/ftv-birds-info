@@ -6,16 +6,17 @@
         <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu" aria-label="icon-button with menu icon">
             <mat-icon>menu</mat-icon>
         </button>
-        
+
         <!-- Menú desplegable -->
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>
-                <span routerLinkActive="active"><a routerLink="auth">Autenticarse</a></span>
+            <button mat-menu-item span routerLinkActive="active" routerLink="auth">
+                Autenticarse
             </button>
-            <button mat-menu-item disabled>
-              <span routerLinkActive="active"><a routerLink="auth">Añadir</a></span>
+            <!-- <button mat-menu-item disabled> -->
+            <button mat-menu-item routerLinkActive="active" routerLink="create">
+                Añadir
             </button>
-          </mat-menu>
+        </mat-menu>
     </mat-toolbar-row>
 </mat-toolbar>
 

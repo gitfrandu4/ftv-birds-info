@@ -1,1 +1,28 @@
-<p>create works!</p>
+<div class="bird-form-content">
+    <form>
+        <div class="form-group">
+            <label for="nombre">Especie</label>
+            <input type="text" required class="form-control" id="name" aria-describedby="Especie"
+                placeholder="Avutarda hubara">
+            <small class="form-text text-muted">Nombre de la especie que va a agregar.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="nombre-cientifico">Nombre científico</label>
+            <input type="text" required class="form-control" id="nombre-cientifico" placeholder="Chlamydotis undulata">
+        </div>
+
+        <div class="form-group">
+            <label for="descripcion">Descripción del ave</label>
+            <textarea class="form-control" id="descripcion" rows="3" placeholder="{{ hubara_desc }}"></textarea>
+            <small class="form-text text-muted">Descripción del ave o información de interés.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="image">Añadir imagen</label>
+            <input type="file" class="form-control-file" id="image">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+</div>

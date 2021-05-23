@@ -1,0 +1,10 @@
+.bird-form-content{
+    padding: 2em;
+    width: 100%;
+    justify-content: space-evenly;
+    display: flex;
+}
+
+.bird-form {
+    width: 20em;
+}
