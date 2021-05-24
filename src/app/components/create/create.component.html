@@ -1,28 +1,36 @@
 <div class="bird-form-content">
-    <form>
+    <form class="bird-form" #addBirdForm="ngForm" (ngSubmit)="onSubmitform(addBirdForm)">
         <div class="form-group">
-            <label for="nombre">Especie</label>
-            <input type="text" required class="form-control" id="name" aria-describedby="Especie"
+            <label for="especie">Especie</label>
+            <input type="text" required name="especie" class="form-control" id="especie" ngModel aria-describedby="Especie"
                 placeholder="Avutarda hubara">
             <small class="form-text text-muted">Nombre de la especie que va a agregar.</small>
         </div>
 
         <div class="form-group">
-            <label for="nombre-cientifico">Nombre científico</label>
-            <input type="text" required class="form-control" id="nombre-cientifico" placeholder="Chlamydotis undulata">
+            <label for="nombre_cientifico">Nombre científico</label>
+            <input type="text" required name="nombre_cientifico" class="form-control" ngModel id="nombre_cientifico"
+                placeholder="Chlamydotis undulata">
         </div>
 
         <div class="form-group">
             <label for="descripcion">Descripción del ave</label>
-            <textarea class="form-control" id="descripcion" rows="3" placeholder="{{ hubara_desc }}"></textarea>
+            <textarea class="form-control" name="descripcion" ngModel required id="descripcion" rows="3"
+                placeholder="{{ hubara_desc }}"></textarea>
             <small class="form-text text-muted">Descripción del ave o información de interés.</small>
         </div>
 
         <div class="form-group">
-            <label for="image">Añadir imagen</label>
-            <input type="file" class="form-control-file" id="image">
+            <label for="image_url">Imagen (URL)</label>
+            <input type="text" name="image_url" ngModel class="form-control" id="image_url"
+                placeholder="fuerteventura.com/file/hubara1.png">
         </div>
 
-        <button type="submit" class="btn btn-primary">Agregar</button>
+        <div class="form-group">
+            <label for="autor">Autor</label>
+            <input type="text" name="autor" ngModel class="form-control" id="autor" placeholder="Pedro Morales">
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!addBirdForm.valid">Agregar</button>
     </form>
 </div>
