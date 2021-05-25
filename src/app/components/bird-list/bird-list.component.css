@@ -1,0 +1,28 @@
+.birds-list-items{
+    margin-bottom: 1.5em;
+}
+
+.bird-list-item{
+    display: flex;
+    padding: 0.5em;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background-color: teal;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.bird-item-info{
+    margin-left: 1em;
+}
+
+.bird-especie {
+    font-size: 20px;
+}
+
+.bird-cientifico{
+    color:rgba(255,255,255,.7);
+    font-size: 14px;
+}

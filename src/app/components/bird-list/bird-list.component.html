@@ -1,1 +1,14 @@
-<p>bird-list works!</p>
+<mat-list role="list">
+
+    <mat-list-item class="birds-list-items" role="listitem" *ngFor="let bird of birds">
+        <div class="bird-list-item">
+            <img class="bird-image" width="30" height="30" src="{{ bird['img'] }}">
+            <div class="bird-item-info">
+                <span class="bird-especie">{{ bird["especie"] }}</span>
+                <br>
+                <span class="bird-cientifico">{{ bird["especie"] }}</span>
+            </div>
+        </div>
+    </mat-list-item>
+
+  </mat-list>

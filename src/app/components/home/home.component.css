@@ -1,5 +1,13 @@
 .home{
     display: flex;
     justify-content: space-around;
-    padding: 2em;
+    padding: 0.5em;
+}
+
+.birds-list{
+    width: 30%;
+}
+
+.birds-info{
+    width: 60%;
 }
