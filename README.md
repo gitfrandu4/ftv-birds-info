@@ -1,27 +1,48 @@
-# BirdsInfo
+# Fuerteventura Birds-Info 🦅
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
+## Deployment 🚀
 
-## Development server
+### Deploy to GitHub Pages 📚
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Seguimos los pasos
 
-## Code scaffolding
+1. Creamos el repositorio de GitHub para nuestro proyecto
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. Configuramos `Git` en nuestro repositorio local para conectarlo con el repositorio remoto. Los comandos son similares a los siguientes:
 
-## Build
+```
+git remote add origin https://github.com/gitfrandu4/ftv-birds-info
+git branch -M main
+git push -u origin main
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+3. Create and check out a git branch named gh-pages.
 
-## Running unit tests
+```
+git checkout -b gh-pages
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+4. Hacemos build del prouecto utilizando el comando de Angular CLI `ng build`.
 
-## Running end-to-end tests
+```
+ng build --output-path docs --base-href /your_project_name/
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Nota: /your_project_name/ es el nombre del proyecto especificado en el paso 1. 
+Debemos incluir los slashes. 
 
-## Further help
+ng build --output-path docs --base-href=""
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+5. Cuando se completa el build copiamos `docs/index.html` en un nuevo archivo y lo renombramos como `docs/404.html`.
+
+6. Commit + push
+
+7. En el proyecto de Github > Settings > GitHub Pages > Configuramos el sitio para publicar desde la carpeta `docs`.
+
+8. Save
+
+9. Accedemos al enlace donde se ha desplegado el proyecto: https://gitfrandu4.github.io/ftv-birds-info/
+
+
+
+Ayuda: https://angular.io/guide/deployment

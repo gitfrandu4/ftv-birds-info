@@ -9,6 +9,7 @@
     align-items: center;
     height: fit-content;
 }
+
 .credit{
     text-align: center;
     font-size: 8px;
@@ -28,8 +29,36 @@
     width: calc(30% + 32px)
 }
 
+.bird-desc {
+    max-height: 150px;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+    font-weight: bold;
+    overflow: auto;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #7ff9e9;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #05584e; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #07332e; 
+  }
+
 @media screen and (max-width: 600px) {
     .bird-card-image {
-        width: calc(100% + 32px)
+        width: calc(90% + 32px)
     }
 }
