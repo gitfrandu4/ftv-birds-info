@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
-import { Bird } from './bird.model';
+import { Bird } from 'src/app/models/bird.model';
 
 @Component({
   selector: 'app-create',

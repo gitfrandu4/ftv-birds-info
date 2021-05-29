@@ -1,21 +1,27 @@
-<div class="bird-info">
-    <mat-card class="example-card">
+<div class="bird-info" *ngIf="showBirdService.bird">
+    <mat-card class="bird-card">
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+          <mat-card-title>{{ showBirdService.bird.especie }}</mat-card-title>
+          <mat-card-subtitle>{{ showBirdService.bird.cientifico }}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <img mat-card-image class="bird-card-image" [src]="showBirdService.bird.img" alt="Photo of a bird">
         <mat-card-content>
+          <p class="credit">
+            <strong>Crédios</strong>: {{ showBirdService.bird.autor }}
+          </p>
           <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
+            {{ showBirdService.bird.desc }}
           </p>
         </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>
+        <!-- <mat-card-actions>
+          <div class="bird-buttons">
+            <button class="bird-info-button" mat-fab color="warn" aria-label="Example icon button with a delete icon">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button class="bird-info-button" mat-fab color="warn" aria-label="Example icon button with a delete icon">
+              <mat-icon>favorite</mat-icon>
+            </button>
+          </div>
+        </mat-card-actions> -->
       </mat-card>
 </div>

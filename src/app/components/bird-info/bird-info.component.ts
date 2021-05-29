@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Bird } from 'src/app/models/bird.model';
+import { ShowBirdService } from 'src/app/services/show-bird.service';
 
 @Component({
   selector: 'app-bird-info',
@@ -7,9 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BirdInfoComponent implements OnInit {
 
-  constructor() { }
+  @Input() birds: Bird[] = [];
 
-  ngOnInit(): void {
+  public idBirdShow: string = "";
+
+  public showBird: Bird = this.birds[0];
+
+  constructor(public showBirdService: ShowBirdService) { 
+    this.showBird = this.birds[0];
   }
 
+
+  ngOnInit(): void {
+    // Nos suscribimos al Subject que expone el servicio
+    this.showBirdService.changeBirdObservable.subscribe(showBirdResponse => {
+      this.showBird = showBirdResponse;
+    });
+  }
+
+  ngDoCheck(): void {
+    this.showBird = this.birds[0];
+    this.birds.forEach(
+       (bird) =>{
+        if (bird.id === this.idBirdShow){
+          this.showBird = bird;
+        }
+      }
+    );
+  }
 }

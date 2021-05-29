@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Bird } from 'src/app/models/bird';
+import { Bird } from 'src/app/models/bird.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
         })
       )
       .subscribe(birds => {
-        console.log(birds);
+        // console.log(birds);
         this.loadedBirds = birds;
       });
   }

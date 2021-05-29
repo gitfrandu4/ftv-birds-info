@@ -24,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutComponent } from './components/about/about.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatMenuModule,
     MatSidenavModule,
     MatButtonToggleModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

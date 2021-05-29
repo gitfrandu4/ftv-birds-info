@@ -1,5 +1,9 @@
 .birds-list-items{
-    margin-bottom: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.bird-list{
+    height: 100%;
 }
 
 .bird-list-item{
@@ -26,3 +30,29 @@
     color:rgba(255,255,255,.7);
     font-size: 14px;
 }
+
+.bird-list{
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 600px) {
+    .bird-item-info{
+        display: none;
+    }
+
+    .bird-list-item {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bird-image{
+        width: 40px;
+        height: 40px;
+    }
+
+    .birds-list-items{
+        margin-bottom: 1em;
+    }
+    
+  }

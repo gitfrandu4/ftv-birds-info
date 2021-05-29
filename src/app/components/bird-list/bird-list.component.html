@@ -1,14 +1,12 @@
-<mat-list role="list">
-
-    <mat-list-item class="birds-list-items" role="listitem" *ngFor="let bird of birds">
+<mat-action-list role="list">
+    <div class="bird-list" >
+    <mat-list-item class="birds-list-items" role="listitem" (click)="changeBirdInfo( bird['id'] )" *ngFor="let bird of birds">
         <div class="bird-list-item">
             <img class="bird-image" width="30" height="30" src="{{ bird['img'] }}">
             <div class="bird-item-info">
                 <span class="bird-especie">{{ bird["especie"] }}</span>
-                <br>
-                <span class="bird-cientifico">{{ bird["especie"] }}</span>
             </div>
         </div>
     </mat-list-item>
-
-  </mat-list>
+</div>
+  </mat-action-list> 
