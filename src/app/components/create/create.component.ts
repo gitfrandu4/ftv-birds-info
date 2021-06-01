@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { Bird } from 'src/app/models/bird.model';
+import { PostBirdService } from 'src/app/services/post-bird.service';
 
 @Component({
   selector: 'app-create',
@@ -16,70 +17,80 @@ export class CreateComponent implements OnInit {
 
   loadedBirds: Bird[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private postBirdService: PostBirdService) { }
 
   ngOnInit(): void {
     this.onFetchBirds();
   }
 
+  // Utiliza el servicio PostBirdService para hacer una petición HTTP que guarde en la BD el 
+  // ave que introducimos en el form
   onSubmitform(form: NgForm) {
-    const postData = {
-      especie: form.value.especie,
-      cientifico: form.value.nombre_cientifico,
-      desc: form.value.descripcion,
-      img: form.value.image_url,
-      autor: form.value.autor,
-    };
-
-    console.log(postData);
-
     // Send Http Request
-    this.http.post<{especie: string;
-      cientifico: string;
-      desc: string;
-      img: string;
-      autor: string;
-      id?: string;}>(
-      'https://birds-info-a3a1d-default-rtdb.europe-west1.firebasedatabase.app/birds.json',
-      postData
-    ).subscribe(responseData => {
-      console.log(responseData);
-    }
-    // Opcional (y más correcto): También podríamos haber hecho: 
-    // this.http.post<{especie: string;
-                      // cientifico: string;
-                      // desc: string;
-                      // img: string;
-                      // autor: string;
-                      // id?: string;}>(..........
-    );
+    this.postBirdService.createAndStoreBird(form.value.especie, form.value.nombre_cientifico, form.value.descripcion, form.value.image_url, form.value.autor);
     form.reset();
   }
 
+  // onSubmitform(form: NgForm) {
+  //   const postData = {
+  //     especie: form.value.especie,
+  //     cientifico: form.value.nombre_cientifico,
+  //     desc: form.value.descripcion,
+  //     img: form.value.image_url,
+  //     autor: form.value.autor,
+  //   };
+
+  //   //console.log(postData);
+
+  //   // Send Http Request
+  //   this.http.post<{especie: string;
+  //     cientifico: string;
+  //     desc: string;
+  //     img: string;
+  //     autor: string;
+  //     id?: string;}>(
+  //     'https://birds-info-a3a1d-default-rtdb.europe-west1.firebasedatabase.app/birds.json',
+  //     postData
+  //   ).subscribe(responseData => {
+  //     console.log(responseData);
+  //   }
+  //   // Opcional (y más correcto): También podríamos haber hecho: 
+  //   // this.http.post<{especie: string;
+  //                     // cientifico: string;
+  //                     // desc: string;
+  //                     // img: string;
+  //                     // autor: string;
+  //                     // id?: string;}>(..........
+  //   );
+  //   form.reset();
+  // }
+
   onFetchBirds() {
-    this.fetchBirds();
-  }
-
-  private fetchBirds() {
     // Send Http Request
-    this.http
-      .get<{ [key: string]: Bird }>('https://birds-info-a3a1d-default-rtdb.europe-west1.firebasedatabase.app/birds.json')
-      .pipe(
-        map((responseData: { [key: string]: Bird }) => {
-
-          const birdsArray : Bird[] = []
-
-          for (const key in responseData) {
-            if (responseData.hasOwnProperty(key)) {
-              birdsArray.push({ ...responseData[key], id: key })
-            }
-          }
-          return birdsArray;
-        })
-      )
-      .subscribe(birds => {
-        // console.log(birds);
-        this.loadedBirds = birds;
-      });
+    this.postBirdService.fetchBird();
   }
+
+  // private fetchBirds() {
+  //   // Send Http Request
+  //   this.http
+  //     .get<{ [key: string]: Bird }>('https://birds-info-a3a1d-default-rtdb.europe-west1.firebasedatabase.app/birds.json')
+  //     .pipe(
+  //       // Transformamos los datos 
+  //       map((responseData: { [key: string]: Bird }) => {
+
+  //         const birdsArray: Bird[] = []
+
+  //         for (const key in responseData) {
+  //           if (responseData.hasOwnProperty(key)) {
+  //             birdsArray.push({ ...responseData[key], id: key })
+  //           }
+  //         }
+  //         return birdsArray;
+  //       })
+  //     )
+  //     .subscribe(birds => {
+  //       // console.log(birds);
+  //       this.loadedBirds = birds;
+  //     });
+  // }
 }

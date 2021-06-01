@@ -12,7 +12,8 @@ import { ShowBirdService } from '../../services/show-bird.service';
 export class BirdListComponent implements OnInit {
 
   @Input() birds: Bird[] = [];
-
+  @Input() isFetching: boolean = false;
+  
   public idBirdShow: string = "";
   public showBird: Bird = this.birds[0];
 
@@ -20,7 +21,7 @@ export class BirdListComponent implements OnInit {
 
   
   ngOnInit(): void {
-    // Nos suscribimos al Subject que expone el servicio
+    // Nos suscribimos al Subject que expone el servicio ShowBirdService
     this.showBirdService.changeBirdObservable.subscribe(showBirdResponse => {
       this.showBird = showBirdResponse;
     });
@@ -40,7 +41,6 @@ export class BirdListComponent implements OnInit {
         }
       }
     );
-
     this.showBirdService.sendIdBird(this.showBird);
   }
 }

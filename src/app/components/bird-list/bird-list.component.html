@@ -10,4 +10,17 @@
             </div>
         </mat-list-item>
     </div>
+
+    <div class="bird-list" *ngIf="birds.length == 0 && !isFetching">
+        <mat-list-item class="birds-list-items" role="listitem">
+            <span>Oh, :( - No birds avalilable!</span><br>
+        </mat-list-item>
+    </div>
+
+    <div class="bird-list" *ngIf="isFetching">
+        <mat-list-item class="birds-list-items" role="listitem">
+            <span>Loading birds...! :)</span>
+        </mat-list-item>
+    </div>
+
 </mat-action-list>
