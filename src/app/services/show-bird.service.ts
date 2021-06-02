@@ -8,8 +8,8 @@ import { Bird } from 'src/app/models/bird.model';
 export class ShowBirdService {
 
   // Esta variable almacenará el id del ave que se mostrará en detalle en la home
-  // Esta variable almacenará el id del ave que se mostrará en detalle en la home
   public bird!: Bird;
+  public birdDeleted: boolean =false;
 
   // Esta variable nos permite enviar mensajes a múltiples observadores
   // Permitirá a varios componentes subscribirse al Subject
@@ -28,6 +28,17 @@ export class ShowBirdService {
    sendIdBird(bird: Bird){
     // alert("sendIdBird: " + bird.id);
     this.bird = bird;
+    this.changeBirdSubject.next(this.bird);
+   }
+
+   clearBird(){
+     this.bird = {
+      especie: "",
+      cientifico: "",
+      img: "",
+      desc: "",
+      autor: ""
+     }
     this.changeBirdSubject.next(this.bird);
    }
 }

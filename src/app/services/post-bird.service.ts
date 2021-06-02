@@ -62,4 +62,8 @@ export class PostBirdService {
       // })
       ;
   }
+
+  deleteBird(id: string){
+    return this.http.delete('https://birds-info-a3a1d-default-rtdb.europe-west1.firebasedatabase.app/birds/'+id+'.json');
+  }
 }

@@ -1,4 +1,4 @@
-<div class="bird-info" *ngIf="showBirdService.bird">
+<div class="bird-info" *ngIf="showBirdService.bird && showBirdService.bird.id">
     <mat-card class="bird-card">
         <mat-card-header>
           <mat-card-title>{{ showBirdService.bird.especie }}</mat-card-title>
@@ -13,15 +13,22 @@
             {{ showBirdService.bird.desc }}
           </p>
         </mat-card-content>
-        <!-- <mat-card-actions>
+        <mat-card-actions>
           <div class="bird-buttons">
-            <button class="bird-info-button" mat-fab color="warn" aria-label="Example icon button with a delete icon">
+            <button class="bird-info-button" mat-raised-button color="warn" 
+                    aria-label="Icon button to delete the bird from firebase BD" 
+                    (click)="onDeleteBird( showBirdService.bird.id )">
               <mat-icon>delete</mat-icon>
             </button>
-            <button class="bird-info-button" mat-fab color="warn" aria-label="Example icon button with a delete icon">
-              <mat-icon>favorite</mat-icon>
+            <button class="bird-info-button"  mat-raised-button color="warn" 
+                    aria-label="Icon button to share in Twitter the Angular web app">
+              
+              <a class="share-button" target="_blank" href="https://twitter.com/intent/tweet?text=¡{{ showBirdService.bird.especie }}! Aprende sobre este ave en el siguiente enlace: https://t.co/0J7lfi3AoN?amp=1">
+                <mat-icon>favorite</mat-icon>
+              </a>
+              
             </button>
           </div>
-        </mat-card-actions> -->
+        </mat-card-actions>
       </mat-card>
 </div>

@@ -13,7 +13,7 @@ export class BirdListComponent implements OnInit {
 
   @Input() birds: Bird[] = [];
   @Input() isFetching: boolean = false;
-  
+
   public idBirdShow: string = "";
   public showBird: Bird = this.birds[0];
 
@@ -28,11 +28,12 @@ export class BirdListComponent implements OnInit {
   }
 
   /**
-   * 
+   * Este método cambia el ave que se muestra en el componente BirdInfoComponent
    * @param id Id del bird seleccionado
    */
   changeBirdInfo(id: string | undefined){
-    
+    // Busca el id en el vector de aves y utiliza el servicio ShowBirdService para comunicarselo a
+    // los componentes suscritos. 
     this.birds.forEach(
        (bird) =>{
         if (bird.id === id){

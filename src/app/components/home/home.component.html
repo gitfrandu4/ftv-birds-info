@@ -4,7 +4,7 @@
         
     </app-bird-list>
         
-    <app-bird-info class="birds-info" [birds] = "loadedBirds">
+    <app-bird-info class="birds-info" [birds] = "loadedBirds" (idBirdDeleted)="deleteBird($event)">
 
     </app-bird-info>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Bird } from 'src/app/models/bird.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -51,4 +51,13 @@ export class HomeComponent implements OnInit {
   //       this.loadedBirds = birds;
   //     });
   // }
+
+  deleteBird(id: string){
+    let i = this.loadedBirds.findIndex(function(bird) {
+      return bird.id == id;
+    });
+
+    if (i != -1)
+      this.loadedBirds.splice(i, 1);
+  }
 }

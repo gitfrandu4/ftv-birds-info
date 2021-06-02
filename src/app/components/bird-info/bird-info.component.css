@@ -17,8 +17,22 @@
 }
 
 .bird-buttons{
+    display: flex;
     text-align: center;
     padding: 1em;
+}
+
+
+a {
+text-decoration: none;
+color: white;
+display: flex;
+justify-content: center;
+}
+
+a:hover {
+    color: rgb(206, 7, 7);
+    font-size: 50px;
 }
 
 .bird-info-button{
@@ -37,25 +51,27 @@
     overflow: auto;
 }
 
-/* width */
-::-webkit-scrollbar {
-    width: 10px;
-  }
+/* ==== Scrollbar ==== */ 
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
   
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #7ff9e9;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #05584e; 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #07332e; 
-  }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #7ff9e9;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #05584e; 
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #07332e; 
+    }
+/* ==== ===== ==== */ 
 
 @media screen and (max-width: 600px) {
     .bird-card-image {
