@@ -26,3 +26,9 @@
     font-weight: bold;
   }
 
+  @media screen and (max-width: 760px) {
+    .header a.logo {
+      font-size: 14px;
+      font-weight: bold;
+    }
+}

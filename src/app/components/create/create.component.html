@@ -1,4 +1,8 @@
 <div class="bird-form-content">
+    <div>
+        <h1>Nueva ave:</h1>
+        <p>Por favor, rellene los campos para agregar una nueva especie al índice</p>
+    </div>
     <form class="bird-form" #addBirdForm="ngForm" (ngSubmit)="onSubmitform(addBirdForm)">
         <div class="form-group">
             <label for="especie">Especie</label>
@@ -33,4 +37,8 @@
 
         <button type="submit" class="btn btn-primary" [disabled]="!addBirdForm.valid">Agregar</button>
     </form>
+
+    <div>
+        <img class="img-herrerillo" src="../../assets/images/birds/Herrerillo-comun.png" alt="Imagen de un Herrerillo común">
+      </div>
 </div>

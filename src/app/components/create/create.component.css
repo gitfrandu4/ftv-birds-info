@@ -3,8 +3,20 @@
     width: 100%;
     justify-content: space-evenly;
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .bird-form {
     width: 30em;
+}
+
+.img-herrerillo{
+    height: 220px;
+}
+
+@media screen and (max-width: 760px) {
+    .bird-form {
+        width: 80%;
+    }
 }

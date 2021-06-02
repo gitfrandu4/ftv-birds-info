@@ -16,15 +16,16 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BirdListComponent } from './components/bird-list/bird-list.component';
 import { BirdInfoComponent } from './components/bird-info/bird-info.component';
-import { LoginComponent } from './components/login/login.component';
 import { CreateComponent } from './components/create/create.component';
 import { HomeComponent } from './components/home/home.component';
 import { ErrorComponent } from './components/error/error.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutComponent } from './components/about/about.component';
-import { AuthComponent } from './components/auth/auth.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { LogUpComponent } from './components/log-up/log-up.component';
+import { LogInComponent } from './components/log-in/log-in.component';
+import { LoadingSpinnerComponent } from './components/shared/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -34,12 +35,13 @@ import { MatButtonModule } from '@angular/material/button';
     FooterComponent,
     BirdListComponent,
     BirdInfoComponent,
-    LoginComponent,
     CreateComponent,
     HomeComponent,
     ErrorComponent,
     AboutComponent,
-    AuthComponent
+    LogUpComponent,
+    LogInComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
