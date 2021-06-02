@@ -7,14 +7,14 @@
     <app-loading-spinner></app-loading-spinner>
   </div>
 
-  <!-- mensaje en caso de error -->
-  <div class="alert alert-danger" *ngIf="error">
-    {{ error }}
-  </div>
-
+  
   <!-- form con la información para realizar el registro -->
   <div>
-    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading && !error">
+    <!-- mensaje en caso de error -->
+    <div class="alert alert-danger" *ngIf="error">
+      {{ error }}
+    </div>
+    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
       <div class="form-group">
         <label for="email">E-mail</label>
         <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
