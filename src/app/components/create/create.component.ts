@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { Bird } from 'src/app/models/bird.model';
-import { PostBirdService } from 'src/app/services/post-bird.service';
+import { PostBirdService } from 'src/app/services/bird/post-bird.service';
 
 @Component({
   selector: 'app-create',

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Bird } from 'src/app/models/bird.model';
-import { PostBirdService } from 'src/app/services/post-bird.service';
-import { ShowBirdService } from 'src/app/services/show-bird.service';
+import { PostBirdService } from 'src/app/services/bird/post-bird.service';
+import { ShowBirdService } from 'src/app/services/bird/show-bird.service';
 
 @Component({
   selector: 'app-bird-info',

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { zip } from 'rxjs';
 import { Bird } from 'src/app/models/bird.model';
-import { ShowBirdService } from '../../services/show-bird.service';
+import { ShowBirdService } from '../../services/bird/show-bird.service';
 
 @Component({
   selector: 'app-bird-list',

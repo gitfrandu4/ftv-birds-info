@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Bird } from 'src/app/models/bird.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { PostBirdService } from 'src/app/services/post-bird.service';
+import { PostBirdService } from 'src/app/services/bird/post-bird.service';
 
 @Component({
   selector: 'app-home',
