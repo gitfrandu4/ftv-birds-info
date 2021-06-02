@@ -17,10 +17,16 @@
         </mat-list-item>
     </div>
 
-    <div class="bird-list" *ngIf="isFetching">
+    <div class="bird-list" *ngIf="isFetching && !errorMessage">
         <mat-list-item class="birds-list-items" role="listitem">
             <span>Loading birds...! :)</span>
         </mat-list-item>
+    </div>
+
+        
+    <div class="alert alert-danger" *ngIf="errorMessage">
+        <h1>An Error Ocurred!</h1>
+        <p>{{ errorMessage }}</p>
     </div>
 
 </mat-action-list>

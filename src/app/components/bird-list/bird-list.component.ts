@@ -13,6 +13,7 @@ export class BirdListComponent implements OnInit {
 
   @Input() birds: Bird[] = [];
   @Input() isFetching: boolean = false;
+  @Input() errorMessage = null;
 
   public idBirdShow: string = "";
   public showBird: Bird = this.birds[0];

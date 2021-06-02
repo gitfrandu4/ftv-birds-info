@@ -16,6 +16,7 @@ export class BirdInfoComponent implements OnInit {
   public idBirdShow: string = "";
 
   public showBird: Bird = this.birds[0];
+  public error = null;
 
   constructor(public showBirdService: ShowBirdService, private postBirdService: PostBirdService) {
     this.showBird = this.birds[0];
@@ -26,6 +27,8 @@ export class BirdInfoComponent implements OnInit {
     // Nos suscribimos al Subject que expone el servicio
     this.showBirdService.changeBirdObservable.subscribe(showBirdResponse => {
       this.showBird = showBirdResponse;
+    }, error => {
+      this.error = error.message;
     });
   }
 

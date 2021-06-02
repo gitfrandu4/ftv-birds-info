@@ -43,6 +43,4 @@ ng build --output-path docs --base-href=""
 
 9. Accedemos al enlace donde se ha desplegado el proyecto: https://gitfrandu4.github.io/ftv-birds-info/
 
-
-
 Ayuda: https://angular.io/guide/deployment

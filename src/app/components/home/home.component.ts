@@ -13,19 +13,23 @@ export class HomeComponent implements OnInit {
 
   loadedBirds: Bird[] = [];
   isFetching!: boolean;
+  error = null;
 
   constructor(private http: HttpClient, private postBirdService: PostBirdService) { }
 
   ngOnInit() {
-    this.fetchBirds();
+    this.onFetchBirds();
   }
 
-  private fetchBirds() {
+  private onFetchBirds() {
     this.isFetching = true;
     // Send Http Request
     this.postBirdService.fetchBird().subscribe((birds: Bird[]) => {
       this.isFetching = false;
       this.loadedBirds = birds;
+    }, error => {
+      this.error = error.message;
+      console.log(error);
     });
   }
 
