@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
+import { AuthResponseData } from "../../models/authResponseData.model";
 
 @Component({
   selector: 'app-log-in',
@@ -13,7 +15,7 @@ export class LogInComponent implements OnInit {
   isLoading = false;
   error: string;
 
-  constructor(private authService: AuthService) { 
+  constructor(private authService: AuthService) {
     this.error = "";
   }
 
@@ -29,35 +31,23 @@ export class LogInComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
 
-    this.isLoading = true;
-  
-    console.log(email, password);
-    
-    if (this.isLoginMode) {
-      
-      return;
-    
-    } else {
+    let authObs: Observable<AuthResponseData>;
 
-      this.authService.signup(email, password).subscribe(
-        resData => {
-          console.log(resData);
-          this.isLoading = false;
+    this.isLoading = true;
+
+    console.log(email, password);
+
+    this.authService.login(email, password).subscribe(
+      resData => {
+        console.log(resData);
+        this.isLoading = false;
       }, errorMessage => {
-          console.log(errorMessage);
-          this.error = errorMessage;
-          // switch(errorResponse.error.error.message){
-          //   case 'EMAIL_EXISTS':
-          //       this.error = "Error - El email ya está registrado";
-          //       break;
-          //     default:
-          //       this.error = "An error ocurred!";
-          //       break;
-          // }
-          this.isLoading = false;
-        }
-      );
-    }
+        console.log(errorMessage);
+        this.error = errorMessage;
+        this.isLoading = false;
+      }
+    );
+    
     form.reset();
   }
 }

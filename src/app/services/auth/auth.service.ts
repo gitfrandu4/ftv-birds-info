@@ -2,15 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
-
-interface AuthResponseData {
-    kind: string; // The request type 
-    idToken: string; // A Firebase Auth ID token for the newly created user
-    email: string; // The email for the newly user
-    refreshToken: string; // A Firebase Auth refresh token for the newly created user
-    expiresIn: string; // The number in seconds in which the ID token expires
-    localId: string; // The uid of the newly created user
-}
+import { AuthResponseData } from "../../models/authResponseData.model";
 
 @Injectable({
     providedIn: 'root',
@@ -19,9 +11,9 @@ interface AuthResponseData {
 export class AuthService {
 
     constructor(private http: HttpClient) {
-
     }
 
+    // https://firebase.google.com/docs/reference/rest/auth/#section-create-email-password
     signup(email: string, password: string) {
         return this.http.post<AuthResponseData>(
             'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDhs2_n0VW26SI2OVGxQxoUdWZ-AvdpwUw',
@@ -47,4 +39,15 @@ export class AuthService {
                   return throwError(errorMessage);
             }));
     }
+
+    // https://firebase.google.com/docs/reference/rest/auth/#section-sign-in-email-password
+    login (email: string, password: string){
+        return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDhs2_n0VW26SI2OVGxQxoUdWZ-AvdpwUw',
+        {
+            email: email, // The email the user is siging in with
+            password: password, // The password for the account
+            returnSecureToken: true // Whether or not to return an ID and refresh token. Should always be true
+        });
+    }
+
 }

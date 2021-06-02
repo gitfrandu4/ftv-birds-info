@@ -9,19 +9,14 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class LogUpComponent implements OnInit {
 
-  isLoginMode = false;
   isLoading = false;
   error: string;
 
-  constructor(private authService: AuthService) { 
+  constructor(private authService: AuthService) {
     this.error = "";
   }
 
   ngOnInit(): void {
-  }
-
-  onSwitchMode() {
-    this.isLoginMode = !this.isLoginMode;
   }
 
   onSubmit(form: NgForm) {
@@ -30,34 +25,28 @@ export class LogUpComponent implements OnInit {
     const password = form.value.password;
 
     this.isLoading = true;
-  
-    console.log(email, password);
-    
-    if (this.isLoginMode) {
-      
-      return;
-    
-    } else {
 
-      this.authService.signup(email, password).subscribe(
-        resData => {
-          console.log(resData);
-          this.isLoading = false;
+    console.log(email, password);
+
+    this.authService.signup(email, password).subscribe(
+      resData => {
+        console.log(resData);
+        this.isLoading = false;
       }, errorMessage => {
-          console.log(errorMessage);
-          this.error = errorMessage;
-          // switch(errorResponse.error.error.message){
-          //   case 'EMAIL_EXISTS':
-          //       this.error = "Error - El email ya está registrado";
-          //       break;
-          //     default:
-          //       this.error = "An error ocurred!";
-          //       break;
-          // }
-          this.isLoading = false;
-        }
-      );
-    }
+        console.log(errorMessage);
+        this.error = errorMessage;
+        // switch(errorResponse.error.error.message){
+        //   case 'EMAIL_EXISTS':
+        //       this.error = "Error - El email ya está registrado";
+        //       break;
+        //     default:
+        //       this.error = "An error ocurred!";
+        //       break;
+        // }
+        this.isLoading = false;
+      }
+    );
+
     form.reset();
   }
 }
