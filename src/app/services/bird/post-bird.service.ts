@@ -41,17 +41,14 @@ export class PostBirdService {
   }
 
   fetchBird() {
-    return this.authService.user.pipe(
-      take(1),
-      exhaustMap(user=>{
-        // Send Http Request
-        return this.http
+    return this.http
           .get<{ [key: string]: Bird }>('https://birds-info-a3a1d-default-rtdb.europe-west1.firebasedatabase.app/birds.json',
           {
+            /**Lo comentamos porque en nuestro caso si está permitido que un usuario sin registrar acceda a 
+             *la información contenida en la BD */
+
             // params: new HttpParams().set('auth', user.token)
-          })
-      }),
-      map((responseData: { [key: string]: Bird }) => {
+          }).pipe(map((responseData: { [key: string]: Bird }) => {
 
         const birdsArray: Bird[] = []
 

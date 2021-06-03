@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule }   from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -26,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { LogUpComponent } from './components/log-up/log-up.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { LoadingSpinnerComponent } from './components/shared/loading-spinner/loading-spinner.component';
+import { AuthInterceptorService } from './services/auth/auth-interceptor.service';
 
 
 @NgModule({
@@ -59,7 +60,7 @@ import { LoadingSpinnerComponent } from './components/shared/loading-spinner/loa
     MatCardModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
