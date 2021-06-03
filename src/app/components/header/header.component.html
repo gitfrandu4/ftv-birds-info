@@ -12,18 +12,18 @@
         <!-- Menú desplegable -->
         <mat-menu class="customize" #menu="matMenu">
             <div class="welcome-user" *ngIf="isAuthenticated">¡Bienvenido!</div>
-            <button mat-menu-item routerLinkActive="active" class="btn-grad" *ngIf="!isAuthenticated" routerLink="logup">
-                Registrarse
+            <button mat-menu-item routerLinkActive="active" class="btn-grad" *ngIf="isAuthenticated" routerLink="logup">
+                Agregar usuario
             </button>
             <button mat-menu-item routerLinkActive="active" class="btn-grad" *ngIf="!isAuthenticated" routerLink="login">
                 Iniciar sesión
             </button>
-            <button mat-menu-item routerLinkActive="active" class="btn-grad" *ngIf="isAuthenticated" routerLink="logout">
-                Cerrar sesión
-            </button>
             <!-- <button mat-menu-item> -->
             <button mat-menu-item routerLinkActive="active" class="btn-grad" *ngIf="isAuthenticated" routerLink="create">
-                Añadir
+                Añadir ave
+            </button>
+            <button mat-menu-item routerLinkActive="active" class="btn-grad" *ngIf="isAuthenticated" (click)="onLogout()">
+                Cerrar sesión
             </button>
         </mat-menu>
     </mat-toolbar-row>

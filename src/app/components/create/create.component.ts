@@ -28,6 +28,7 @@ export class CreateComponent implements OnInit {
   onSubmitform(form: NgForm) {
     // Send Http Request
     this.postBirdService.createAndStoreBird(form.value.especie, form.value.nombre_cientifico, form.value.descripcion, form.value.image_url, form.value.autor);
+    
     form.reset();
   }
 
