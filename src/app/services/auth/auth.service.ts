@@ -4,6 +4,7 @@ import { catchError, tap } from "rxjs/operators";
 import { BehaviorSubject, Subject, throwError } from "rxjs";
 import { AuthResponseData } from "../../models/authResponseData.model";
 import { User } from "../../models/user.model";
+import { stringify } from "@angular/compiler/src/util";
 
 @Injectable({
     providedIn: 'root',
@@ -25,7 +26,7 @@ export class AuthService {
                 email: email,
                 password: password,
                 returnSecureToken: true
-            }).pipe(catchError(this.handleError), tap(responseData =>{
+            }).pipe(catchError(this.handleError), tap(responseData => {
                 this.handleAuthentication(responseData.email, responseData.localId, responseData.idToken, +responseData.expiresIn);
             })
             );
@@ -39,10 +40,33 @@ export class AuthService {
                 password: password, // The password for the account
                 returnSecureToken: true // Whether or not to return an ID and refresh token. Should always be true
             })
-            .pipe(catchError(this.handleError), tap(responseData =>{
+            .pipe(catchError(this.handleError), tap(responseData => {
                 this.handleAuthentication(responseData.email, responseData.localId, responseData.idToken, +responseData.expiresIn);
             })
             );
+    }
+
+    /**
+     * The goal is to retrieve data from the localStorage
+     */
+    autoLogion() {
+        const userData: {
+            email: string;
+            id: string;
+            _token: string;
+            _tokenExpirationDate: string;
+        } = JSON.parse(localStorage.getItem('userData') || '{}');
+        if (!userData){
+            return
+        }
+        const loadedUser = new User(userData.email, 
+                                    userData.id, 
+                                    userData._token, 
+                                    new Date(userData._tokenExpirationDate));
+
+        if (loadedUser.token){
+            this.user.next(loadedUser);
+        }
     }
 
     private handleError(errorResponse: HttpErrorResponse) {
@@ -80,11 +104,13 @@ export class AuthService {
         return throwError(errorMessage);
     }
 
-    private handleAuthentication(email: string, userId:string, token: string, expiresIn: number){
+    private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
         const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-                
+
         const user = new User(email, userId, token, expirationDate);
-        
+
+        localStorage.setItem('userData', JSON.stringify(user));
+
         // Ahora podemos usar el Subject para setear o emitir el usuario logueado
         this.user.next(user);
     }

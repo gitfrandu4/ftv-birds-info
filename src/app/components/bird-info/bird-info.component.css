@@ -38,7 +38,8 @@ a:hover {
 }
 
 .bird-card-image {
-    width: calc(30% + 32px)
+    width: calc(30% + 32px);
+    max-height: 380px;
 }
 
 .bird-desc {

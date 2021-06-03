@@ -31,67 +31,8 @@ export class CreateComponent implements OnInit {
     
     form.reset();
   }
-
-  // onSubmitform(form: NgForm) {
-  //   const postData = {
-  //     especie: form.value.especie,
-  //     cientifico: form.value.nombre_cientifico,
-  //     desc: form.value.descripcion,
-  //     img: form.value.image_url,
-  //     autor: form.value.autor,
-  //   };
-
-  //   //console.log(postData);
-
-  //   // Send Http Request
-  //   this.http.post<{especie: string;
-  //     cientifico: string;
-  //     desc: string;
-  //     img: string;
-  //     autor: string;
-  //     id?: string;}>(
-  //     'https://birds-info-a3a1d-default-rtdb.europe-west1.firebasedatabase.app/birds.json',
-  //     postData
-  //   ).subscribe(responseData => {
-  //     console.log(responseData);
-  //   }
-  //   // Opcional (y más correcto): También podríamos haber hecho: 
-  //   // this.http.post<{especie: string;
-  //                     // cientifico: string;
-  //                     // desc: string;
-  //                     // img: string;
-  //                     // autor: string;
-  //                     // id?: string;}>(..........
-  //   );
-  //   form.reset();
-  // }
-
   onFetchBirds() {
     // Send Http Request
     this.postBirdService.fetchBird();
   }
-
-  // private fetchBirds() {
-  //   // Send Http Request
-  //   this.http
-  //     .get<{ [key: string]: Bird }>('https://birds-info-a3a1d-default-rtdb.europe-west1.firebasedatabase.app/birds.json')
-  //     .pipe(
-  //       // Transformamos los datos 
-  //       map((responseData: { [key: string]: Bird }) => {
-
-  //         const birdsArray: Bird[] = []
-
-  //         for (const key in responseData) {
-  //           if (responseData.hasOwnProperty(key)) {
-  //             birdsArray.push({ ...responseData[key], id: key })
-  //           }
-  //         }
-  //         return birdsArray;
-  //       })
-  //     )
-  //     .subscribe(birds => {
-  //       // console.log(birds);
-  //       this.loadedBirds = birds;
-  //     });
-  // }
 }
