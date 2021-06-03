@@ -6,13 +6,14 @@ import { HomeComponent } from './components/home/home.component';
 import { ErrorComponent } from './components/error/error.component';
 import { LogUpComponent } from './components/log-up/log-up.component';
 import { LogInComponent } from './components/log-in/log-in.component';
+import { AuthGuardService } from '../app/services/auth/auth-guard.service';
 
 const routes: Routes = [
-  { path: 'create', component: CreateComponent },
+  { path: 'create', component: CreateComponent, canActivate: [AuthGuardService]},
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },
   { path: 'login', component: LogInComponent },
-  { path: 'logup', component: LogUpComponent },
+  { path: 'logup', component: LogUpComponent, canActivate: [AuthGuardService] },
   { path: '**', component: ErrorComponent },
 ];
 

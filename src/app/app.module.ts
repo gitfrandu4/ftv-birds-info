@@ -28,7 +28,6 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { LoadingSpinnerComponent } from './components/shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './services/auth/auth-interceptor.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
