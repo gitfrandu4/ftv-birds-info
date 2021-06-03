@@ -1,14 +1,19 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError } from "rxjs/operators";
-import { throwError } from "rxjs";
+import { catchError, tap } from "rxjs/operators";
+import { Subject, throwError } from "rxjs";
 import { AuthResponseData } from "../../models/authResponseData.model";
+import { User } from "../../models/user.model";
 
 @Injectable({
     providedIn: 'root',
 })
 
 export class AuthService {
+
+    user = new Subject<User>(
+        
+    );
 
     constructor(private http: HttpClient) {
     }
@@ -21,24 +26,10 @@ export class AuthService {
                 email: email,
                 password: password,
                 returnSecureToken: true
-            }).pipe(catchError(this.handleError));
-            //     let errorMessage = "An unknown error occurred!"
-
-            //     if ( !errorResponse.error || !errorResponse.error.error ){
-            //         return throwError(errorMessage);
-            //     }
-
-            //     switch(errorResponse.error.error.message){
-            //         case 'EMAIL_EXISTS':
-            //             errorMessage = "Error - El email ya está registrado";
-            //             break;
-            //           default:
-            //             errorMessage = "An error ocurred!";
-            //             break;
-            //       }
-            //       return throwError(errorMessage);
-            // })
-            // );
+            }).pipe(catchError(this.handleError), tap(responseData =>{
+                this.handleAuthentication(responseData.email, responseData.localId, responseData.idToken, +responseData.expiresIn);
+            })
+            );
     }
 
     // https://firebase.google.com/docs/reference/rest/auth/#section-sign-in-email-password
@@ -49,7 +40,10 @@ export class AuthService {
                 password: password, // The password for the account
                 returnSecureToken: true // Whether or not to return an ID and refresh token. Should always be true
             })
-            .pipe(catchError(this.handleError));
+            .pipe(catchError(this.handleError), tap(responseData =>{
+                this.handleAuthentication(responseData.email, responseData.localId, responseData.idToken, +responseData.expiresIn);
+            })
+            );
     }
 
     private handleError(errorResponse: HttpErrorResponse) {
@@ -85,6 +79,15 @@ export class AuthService {
                 break;
         }
         return throwError(errorMessage);
-}
+    }
+
+    private handleAuthentication(email: string, userId:string, token: string, expiresIn: number){
+        const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+                
+        const user = new User(email, userId, token, expirationDate);
+        
+        // Ahora podemos usar el Subject para setear o emitir el usuario logueado
+        this.user.next(user);
+    }
 
 }
