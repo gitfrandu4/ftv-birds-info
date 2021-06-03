@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, tap } from "rxjs/operators";
-import { Subject, throwError } from "rxjs";
+import { BehaviorSubject, Subject, throwError } from "rxjs";
 import { AuthResponseData } from "../../models/authResponseData.model";
 import { User } from "../../models/user.model";
 
@@ -11,9 +11,8 @@ import { User } from "../../models/user.model";
 
 export class AuthService {
 
-    user = new Subject<User>(
-        
-    );
+    // This will inform all places in the application about when our user changes
+    user = new BehaviorSubject<any>(null);
 
     constructor(private http: HttpClient) {
     }

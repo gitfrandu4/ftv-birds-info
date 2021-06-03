@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Bird } from 'src/app/models/bird.model';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { PostBirdService } from 'src/app/services/bird/post-bird.service';
 import { ShowBirdService } from 'src/app/services/bird/show-bird.service';
 
@@ -8,7 +10,7 @@ import { ShowBirdService } from 'src/app/services/bird/show-bird.service';
   templateUrl: './bird-info.component.html',
   styleUrls: ['./bird-info.component.css']
 })
-export class BirdInfoComponent implements OnInit {
+export class BirdInfoComponent implements OnInit, OnDestroy {
 
   @Input() birds: Bird[] = [];
   @Output() idBirdDeleted = new EventEmitter<string>();
@@ -18,7 +20,13 @@ export class BirdInfoComponent implements OnInit {
   public showBird: Bird = this.birds[0];
   public error = null;
 
-  constructor(public showBirdService: ShowBirdService, private postBirdService: PostBirdService) {
+  private userSub!: Subscription;
+  isAuthenticated = false;
+
+  constructor(public showBirdService: ShowBirdService, 
+              private postBirdService: PostBirdService,
+              private authService: AuthService) {
+
     this.showBird = this.birds[0];
   }
 
@@ -29,6 +37,12 @@ export class BirdInfoComponent implements OnInit {
       this.showBird = showBirdResponse;
     }, error => {
       this.error = error.message;
+    });
+    
+    // Setup a subscription to 'authService.user'
+    this.userSub = this.authService.user.subscribe(user => {
+      // this.isAuthenticated = !user ? false : true;
+      this.isAuthenticated = !!user;
     });
   }
 
@@ -48,5 +62,9 @@ export class BirdInfoComponent implements OnInit {
     this.postBirdService.deleteBird(id).subscribe();
     this.idBirdDeleted.emit(id);
     this.showBirdService.clearBird();
+  }
+
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
   }
 }

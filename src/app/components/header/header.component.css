@@ -9,6 +9,31 @@
     flex: 1 1 auto;
 }
 
+/* ===== Personalizando el menú desplegable ===== */
+::ng-deep .customize {
+  background-image: linear-gradient(to right, #F2994A 0%, #F2C94C  51%, #F2994A  100%)
+}
+
+.btn-grad {background-image: linear-gradient(to right, #F2994A 0%, #F2C94C  51%, #F2994A  100%)}
+.btn-grad {
+   text-align: center;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: rgb(0, 0, 0);    
+   font-weight: bolder;        
+   display: block;
+ }
+
+.btn-grad:hover {
+   background-position: right center; /* change the direction of the change here */
+   text-decoration: none;
+ }
+
+.welcome-user {
+  display: flex;
+  justify-content: center;
+}
+
 /* Style the header links */
 .header a {
     color: black;

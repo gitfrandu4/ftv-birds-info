@@ -3,6 +3,7 @@ import { Bird } from 'src/app/models/bird.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { PostBirdService } from 'src/app/services/bird/post-bird.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
   isFetching!: boolean;
   error = null;
 
-  constructor(private http: HttpClient, private postBirdService: PostBirdService) { }
+  constructor(private postBirdService: PostBirdService) { }
 
   ngOnInit() {
     this.onFetchBirds();
@@ -32,29 +33,6 @@ export class HomeComponent implements OnInit {
       console.log(error);
     });
   }
-
-  // private fetchBirds() {
-  //   // Send Http Request  
-  //   this.http
-  //     .get<{ [key: string]: Bird }>('https://birds-info-a3a1d-default-rtdb.europe-west1.firebasedatabase.app/birds.json')
-  //     .pipe(
-  //       map((responseData: { [key: string]: Bird }) => {
-
-  //         const birdsArray : Bird[] = []
-
-  //         for (const key in responseData) {
-  //           if (responseData.hasOwnProperty(key)) {
-  //             birdsArray.push({ ...responseData[key], id: key })
-  //           }
-  //         }
-  //         return birdsArray;
-  //       })
-  //     )
-  //     .subscribe(birds => {
-  //       // console.log(birds);
-  //       this.loadedBirds = birds;
-  //     });
-  // }
 
   deleteBird(id: string){
     let i = this.loadedBirds.findIndex(function(bird) {

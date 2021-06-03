@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class LogUpComponent implements OnInit {
   isLoading = false;
   error: string;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.error = "";
   }
 
@@ -29,20 +30,14 @@ export class LogUpComponent implements OnInit {
     console.log(email, password);
 
     this.authService.signup(email, password).subscribe(
+      // LogUp success
       resData => {
         console.log(resData);
         this.isLoading = false;
+        this.router.navigate(['/home']);
       }, errorMessage => {
         console.log(errorMessage);
         this.error = errorMessage;
-        // switch(errorResponse.error.error.message){
-        //   case 'EMAIL_EXISTS':
-        //       this.error = "Error - El email ya está registrado";
-        //       break;
-        //     default:
-        //       this.error = "An error ocurred!";
-        //       break;
-        // }
         this.isLoading = false;
       }
     );

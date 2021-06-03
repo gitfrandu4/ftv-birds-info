@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Bird } from '../../models/bird.model';
-import { map } from 'rxjs/operators';
+import { exhaustMap, map, take } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { map } from 'rxjs/operators';
 
 export class PostBirdService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   // Desde aquí enviaremos la petición Http
   createAndStoreBird(especie: string, cientifico: string, desc: string, img: string, autor: string) {
@@ -40,27 +41,28 @@ export class PostBirdService {
   }
 
   fetchBird() {
-    // Send Http Request
-    return this.http
-      .get<{ [key: string]: Bird }>('https://birds-info-a3a1d-default-rtdb.europe-west1.firebasedatabase.app/birds.json')
-      .pipe(
-        // Transformamos los datos 
-        map((responseData: { [key: string]: Bird }) => {
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap(user=>{
+        // Send Http Request
+        return this.http
+          .get<{ [key: string]: Bird }>('https://birds-info-a3a1d-default-rtdb.europe-west1.firebasedatabase.app/birds.json',
+          {
+            // params: new HttpParams().set('auth', user.token)
+          })
+      }),
+      map((responseData: { [key: string]: Bird }) => {
 
-          const birdsArray: Bird[] = []
+        const birdsArray: Bird[] = []
 
-          for (const key in responseData) {
-            if (responseData.hasOwnProperty(key)) {
-              birdsArray.push({ ...responseData[key], id: key })
-            }
+        for (const key in responseData) {
+          if (responseData.hasOwnProperty(key)) {
+            birdsArray.push({ ...responseData[key], id: key })
           }
-          return birdsArray;
-        })
-      )
-      // Ya no nos hace falta suscribirnos
-      // .subscribe(birds => {
-      // })
-      ;
+        }
+        return birdsArray;
+      })
+    );
   }
 
   deleteBird(id: string){

@@ -17,7 +17,8 @@
           <div class="bird-buttons">
             <button class="bird-info-button" mat-raised-button color="warn" 
                     aria-label="Icon button to delete the bird from firebase BD" 
-                    (click)="onDeleteBird( showBirdService.bird.id )">
+                    (click)="onDeleteBird( showBirdService.bird.id )"
+                    *ngIf="isAuthenticated">
               <mat-icon>delete</mat-icon>
             </button>
             <button class="bird-info-button"  mat-raised-button color="warn" 
