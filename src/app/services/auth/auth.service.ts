@@ -15,6 +15,8 @@ export class AuthService {
     // This will inform all places in the application about when our user changes
     user = new BehaviorSubject<any>(null);
 
+    private tokenExpirationTimer: any;
+
     constructor(private http: HttpClient) {
     }
 
@@ -66,6 +68,8 @@ export class AuthService {
 
         if (loadedUser.token){
             this.user.next(loadedUser);
+            const expirationDuration = new Date (userData._tokenExpirationDate).getTime() - new Date().getTime();
+            this.autoLogout(expirationDuration);
         }
     }
 
@@ -108,7 +112,7 @@ export class AuthService {
         const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
 
         const user = new User(email, userId, token, expirationDate);
-
+        this.autoLogout(expiresIn * 1000);
         localStorage.setItem('userData', JSON.stringify(user));
 
         // Ahora podemos usar el Subject para setear o emitir el usuario logueado
@@ -117,6 +121,21 @@ export class AuthService {
 
     logout() {
         this.user.next(null);
+        localStorage.removeItem('userData');
+        if (this.tokenExpirationTimer){
+            clearTimeout(this.tokenExpirationTimer);
+        }
+        this.tokenExpirationTimer = null;
+    }
+
+    /**
+     * Usaremos este método para establecer un timer que elimine la información del usuario que
+     * ha iniciado sesión del almacenamiento local en el localStorage
+     */
+    autoLogout(expirationDuration: number) {
+        this.tokenExpirationTimer = setTimeout(() => {
+            this.logout();
+        }, expirationDuration);
     }
 
 }
