@@ -13,6 +13,10 @@ import { exhaustMap, take } from 'rxjs/operators';
   providedIn: 'root'
 })
 
+/**
+ * Cuando el usuario está autenticado captura las peticiones HTTP que realiza
+ * la aplicación y añade un token que lo identifica. 
+ */
 export class AuthInterceptorService implements HttpInterceptor {
 
   constructor(private authService: AuthService) { }
