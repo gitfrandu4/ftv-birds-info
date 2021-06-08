@@ -25,7 +25,9 @@ La aplicación implementa funcionalidades básicas para Crear, Leer y Borrar ave
 
 Para poder borrar o agregar un nuevo ave es necesario haber iniciado sesión en el aplicativo. 
 
-![image-20210608095145489](images/image-20210608095145489.png)
+<p align="center">
+  <img src="images/image-20210608095145489.png">
+</p>
 
 ### Servicios
 
@@ -42,7 +44,9 @@ Para la comunicación entre componentes no cercanos se han implementado servicio
 
 Por ejemplo:
 
-![image-20210608104247942](images/image-20210608104247942.png)
+<p align="center">
+  <img src="images/image-20210608104247942.png">
+</p>
 
 ```typescript
 import { Injectable } from '@angular/core';
@@ -144,7 +148,9 @@ Algunos de los componentes utilizados han sido:
 
 Para el almacenamiento del índice hemos empleado **`Firebase Realtime Database`**. Este almacenamiento nos permite almacenar y sincronizar datos en una base de datos NoSQL en la nube en formato JSON. Los datos se mantienen sincronizados en tiempo real con todos los cliente conectados. 
 
+<p align="center">
 <img src="https://www.gstatic.com/devrel-devsite/prod/vacc2a2a4a4394c7c42dc62dba69eb022d7680ce4a368d4b28c3e984cc9155a81/firebase/images/lockup.png?dcb_=0.8896867411947109" alt="Firebase">
+</p>
 
 ## Deployment 🚀
 
