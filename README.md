@@ -191,6 +191,15 @@ ng build --output-path docs --base-href=""
 
 Ayuda: https://angular.io/guide/deployment
 
+Nota:
+
+* Para eliminar una rama (por ejemplo gh-pages):
+
+```bash
+git branch -d gh-pages    // 1) from local
+git push origin :gh-pages // 2) from remote repository
+```
+
 ## Créditos
 
 Créditos de las imágenes empleadas para la demo:
