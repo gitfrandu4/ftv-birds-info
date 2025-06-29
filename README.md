@@ -4,10 +4,6 @@ Trabajo de la asignatura DAW II (Desarrollo de Aplicaciones Web II) consistente 
 
 La aplicación implementa un índice de aves endémicas de la isla de Fuerteventura. Para añadir/eliminar aves del índice es necesario que el usuario haya iniciado sesión en el aplicativo web. 
 
-**Autor** ✒️
-
-* Francisco Javier López-Dufour Morales
-
 ## Construido con ⚙️
 
 * Angular Framework: v11.2.13
